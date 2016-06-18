@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+    <link rel="stylesheet" type="text/css" href="css/build/smartphone-preview.min.css" />
+    <link rel="stylesheet" type="text/css" href="css/build/pages/dvcard/template_normal.min.css" />
+
+    <title>Contact Page</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+
+</head>
+
+<body ng-app="app">
+    <!--Preloading animation:start-->
+    <div class="loading-vcard active">
+        <div class="sk-three-bounce">
+            <div class="sk-child sk-bounce1"></div>
+            <div class="sk-child sk-bounce2"></div>
+            <div class="sk-child sk-bounce3"></div>
+        </div>
+    </div>
+    <!--Preloading animation:end-->
+    <div class="vcard-template style2" id="rootElement" ng-controller="ComplexController">
+
+        <div class="vcard-header">
+            <div class="vcard-header-wrapper" style="background-color: #55CFD4">
+                <div class="vcard-top-info">
+                    <h4 class="top"></h4>
+
+                    <div class="img" style="background: url('../img/profile.png');"></div>
+                    <h2 class="name" ng-show="view.firstname || view.lastname">{{view.firstname}} {{view.lastname}}</h2>
+
+                    <h2 class="name" ng-hide="view.firstname || view.lastname">{{view.company}}</h2>
+                    <h6 class="title">{{view.job}}</h6>
+
+                    <div class="add-contact-wrapper">
+                        <a class="add-contact-btn" ng-style="{background:'#ffffff'}" ng-click="OpenPopUp('share');" style="margin-bottom:20px;" ng-show="view.sharing"><i class="icon-share"
+                                                                             style="color:#7D7D7D"></i></a>
+                        <a ng-show="loadDemo" class="add-contact-btn" ng-click="OpenPopUp('disabled-add-button')" ng-style="{background:view.color2||'#9e9e9e'}"><i class="icon-add-user"></i></a>
+                        <a ng-show="!loadDemo" class="add-contact-btn" ng-click="OpenPopUp('save')" ng-style="{background:view.color2||'#9e9e9e'}"><i class="icon-add-user"></i></a>
+                    </div>
+
+                </div>
+                <div class="vcard-functions" ng-show="view.numbers_mobile ||  view.numbers_phone ||  view.email || ((view.city ||view.street|| view.zip|| view.country) && view.show_directions)">
+                    <div class="vcard-functions-wrapper">
+
+                        <a href="tel:{{view.numbers_mobile || view.numbers_phone }}" ng-show="!loadDemo && (view.numbers_mobile || view.numbers_phone)">
+                            <i class="icon-phone"></i>
+                            <small>Call</small>
+                        </a>
+
+                        <a href="mailto:{{view.email}}?subject=From+my+vCard&body=Hey+{{view.firstname}}" target="_newEmail" ng-show="!loadDemo && (view.email)">
+                            <i class="icon-send"></i>
+                            <small>Email</small>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="vcard-body-wrapper">
+            <div class="vcard-body">
+                <div ng-hide="view.numbers_mobile ||  view.numbers_phone ||  view.email || view.city ||view.street|| view.zip|| view.country || view.company || view.bio || view.website">
+                    <div class="vcard-row">
+
+                    </div>
+                    <div class="sk-three-bounce">
+                        <div class="sk-child sk-bounce1"></div>
+                        <div class="sk-child sk-bounce2"></div>
+                        <div class="sk-child sk-bounce3"></div>
+                    </div>
+
+                </div>
+                <div class="vcard-separator"></div>
+                <div class="vcard-row" ng-show="view.numbers_mobile">
+                    <i class="icon icon-phone"></i>
+                    <h4><a href="tel:{{view.numbers_mobile}}">{{view.numbers_mobile}}</a></h4>
+                    <small>Mobile</small>
+                </div>
+                <div class="vcard-separator"></div>
+                <div class="vcard-row" ng-show="view.email">
+                    <i class="icon icon-mail"></i>
+                    <h4><a href="mailto:{{view.email}}" target="_newLink">{{view.email}}</a></h4>
+                    <small>Email</small>
+                </div>
+                <div class="vcard-separator"></div>
+                <div class="vcard-row" ng-show="view.company">
+                    <i class="icon icon-work"></i>
+                    <h4>{{view.company}}</h4>
+                    <small ng-show="view.job">{{view.job}}</small>
+                </div>
+                <div class="vcard-separator"></div>
+                <div class="vcard-row" ng-show="view.website">
+                    <i class="icon icon-earth"></i>
+                    <h4><a href="http://q-r.to/%7B%7Bview.website%7CprefixURL%7D%7D" target="_newLink">{{view.website}}</a></h4>
+                    <small>Website</small>
+                </div>
+                <div class="vcard-separator"></div>
+                <div class="vcard-social" ng-show="view.socialmedialinks|nonEmpty" style="margin-bottom:20px;">
+                    <h5>Social Networks</h5>
+                    <a href="https://facebook.com/Fletchersallhingsliving" ng-repeat="(key, value) in view.socialmedialinks"><span class="icon icon-wrapper {{key}}" target="_top"><i class="icon icon icon-{{key}}"></i></span></a>
+                </div>
+                <a class="btn blue-dark  big i" ng-click="OpenPopUp('share')" ng-style="{background:'#ffffff',color:'#212121'}" ng-show="view.sharing">
+                    <i ng-style="{color:'#212121'}" class="icon icon-share"></i><span ng-style="{color:'#212121'}">Share this page</span>
+                </a>
+                <a class="btn blue-dark big i" ng-click="OpenPopUp('save')" ng-style="{background:view.color2||'#607d8b'}">
+                    <i class="icon icon-add-user"></i><span>Download vCard</span>
+                </a>
+            </div>
+        </div>
+        <div class="PopUps">
+
+            <div popup="share" class="style1 ">
+                <a close-popup="save" ng-click="ClosePopUp('share');"><i class="icon icon-close"></i></a>
+
+                <h3>Share</h3>
+                <p ng-show="loadDemo">Users can share your page</p>
+                <div class="ssk-block ssk-md">
+                    <a href="" class="ssk ssk-text ssk-facebook">Facebook</a>
+                    <a href="" class="ssk ssk-text ssk-twitter">Twitter</a>
+                    <a href="" class="ssk ssk-text ssk-google-plus">Google+</a>
+                    <a href="" class="ssk ssk-text ssk-linkedin">LinkedIn</a>
+                    <a href="" class="ssk ssk-text ssk-email" target="_blank">E-Mail</a>
+                </div><br><br>
+                <div ng-show="!loadDemo">Link to this page<br><br>
+                    <input type="text" class="autoselect" value="http://allthingsliving.net/vCard/index.html" readonly/>
+                </div>
+
+                <a style="cursor: pointer;color: #5ab7e5;font-weight: 400;" ng-show="loadDemo" ng-click="ClosePopUp('share');">
+                    <span>Got it</span>
+                </a>
+
+            </div>
+
+
+            <div popup="save" class="style1 ">
+                <a close-popup="save" ng-click="ClosePopUp('save');"><i class="icon icon-close"></i></a>
+                <i class="icon-add-user header-icon" style="color: #55CFD4"></i>
+                <h3>Save Contact Data</h3>
+                <a class="btn i big block" href="handlePost/bae6LX/index-download=true.html" rel="external" id="test" style="background-color: #55CFD4"><i class="icon-download-inbox"></i> Save to my Phone</a>
+            </div>
+
+        </div>
+    </div>
+    <script type="text/javascript" src="public/lib/jquery/dist/jquery.min.js"></script>
+    <script type="text/javascript" src="js/build/angular.rendering.min.js"></script>
+    <script type="text/javascript">
+        /*<![CDATA[*/
+
+
+        /**
+         * Angular connection
+         */
+        app.loadBasePreviewController();
+        //Override the base preview controller
+        app.controller('ComplexController', function($scope, $controller, $sce, $rootScope, $filter, previewService) {
+
+            //Inherrit from basePreviewController
+            angular.extend(this, $controller('BasePreviewController', {
+                $scope: $scope
+            }));
+
+            $scope.loadDemo = parent && typeof parent.ImHere === "function";
+
+            //Get the json data form the file
+            json_data = {
+                "socialmedialinks": {
+                    "facebook": "https:\/\/www.facebook.com\/Fletchersallthingsliving\/"
+                },
+                "color1": "#55CFD4",
+                "color2": "#55CFD4",
+                "sharing": true,
+                "avatar": "\/\/qrcgcustomers.s3-eu-west-1.amazonaws.com\/account1293353\/20461_1.png?0.5656476060987219",
+                "firstname": "Carley",
+                "lastname": "Fletcher",
+                "numbers_mobile": "(813)767-7305",
+                "email": "carleyfletcher320@gmail.com",
+                "company": "All Things Living",
+                "job": "Pet Care",
+                "website": "http:\/\/allthingsliving.net"
+            };
+
+            //Upgrade old vcards created before 13.04 with show_directions parameter
+            if (angular.isUndefined(json_data.show_directions))
+                json_data.show_directions = true;
+
+            previewService.pushData(json_data);
+
+            //All this inputs are linked to the action bar
+            $scope.$watchGroup(['view.numbers_mobile', 'view.numbers_phone', 'view.email', 'view.street', 'view.zip', 'view.country', 'view.city', 'view.show_directions'], function(newValues, oldValues, $scope) {
+
+                //This helps to remove the border from the last available action element
+                window.setTimeout(function() {
+                    $(".vcard-functions-wrapper a").removeClass("last-element");
+                    $(".vcard-functions-wrapper a:visible:last").addClass("last-element")
+                }, 50);
+
+            });
+
+            //This will only once be triggered
+            $scope.$watchGroup(['view.socialmedialinks'], function(newValues, oldValues, $scope) {
+
+                //This will show that there is an interactionable element on this page
+                if ($scope.loadDemo == true) {
+                    $("html, body").animate({
+                        scrollTop: $('.vcard-social').offset().top
+                    }, 1000);
+                }
+
+            });
+
+            function getBackgroundColor() {
+
+                var color1 = $scope.view.color1 || '#607d8b';
+                var color1b = $scope.view.color1b || '#607d8b';
+
+                if (!$scope.view.show_gradient)
+                    return {
+                        "background": color1
+                    };
+                else
+                    return {
+                        "background": "none",
+                        "background-image": "linear-gradient(45deg," + $scope.view.color1 + " 0%," + $scope.view.color1 + " 1%," + $filter('colorLuminance')($scope.view.color1b, -0.2) + " 100%)"
+                    };
+            }
+
+            $scope.OpenPopUp = OpenPopUp;
+            $scope.ClosePopUp = ClosePopUp;
+            $scope.sendByDownload = sendByDownload;
+            $scope.sendByEmail = sendByEmail;
+            $scope.getBackgroundColor = getBackgroundColor;
+
+            function triggerPost(action, email, callback) {
+                if (action == "download")
+                    return true;
+
+                $.post("/handlePost/bae6LX", {
+                    action: action,
+                    email: email,
+                    YII_CSRF_TOKEN: YII_CSRF_TOKEN
+                }, function(result) {
+                    callback(result);
+                }, "json");
+
+            }
+            /**
+             * Trigger sending via email
+             */
+            function sendByEmail(email) {
+
+                triggerPost("email", email, function(result) {
+                    if (result.status == "success") {
+                        OpenPopUp('email-success');
+                        window.setTimeout(function() {
+                            ClosePopUp();
+                        }, 5000);
+                    } else {
+
+                    }
+                });
+                return false;
+            }
+            /**
+             * Trigger download action of the vCard
+             */
+            function sendByDownload() {
+                triggerPost("download");
+            }
+            /**
+             * Close all popups
+             */
+            function ClosePopUp() {
+                $(".PopUps").fadeOut().removeClass("active");
+                $("[popup]").removeClass("active");
+            }
+
+            /**
+             * Close all popups
+             * @param arg string
+             */
+            function OpenPopUp(arg) {
+                $(".PopUps").fadeIn().addClass("active");
+                $('[popup="' + arg + '"]').addClass("active");
+                RecalculatePopUp(arg)
+                return false;
+            }
+
+            /**
+             * Calculate the position of the popup
+             * @param arg string
+             */
+            function RecalculatePopUp(arg) {
+                var element = $('[popup="' + arg + '"]');
+                var WindowHeight = $(window).height();
+                var PopUpHeight = element.height();
+                if ($(window).height() > $(window).width()) {
+                    PopUpHeight = element.width();
+                    WindowHeight = $(window).width();
+                }
+
+                if (PopUpHeight < WindowHeight) {
+                    var $margin = (WindowHeight - PopUpHeight) / 2;
+                    element.css("margin-top", $margin + "px");
+                } else {
+                    element.css("position", "absolute");
+                    element.css("margin-top", ($(document).scrollTop() + 10) + "px");
+                    var $headerH = $('[popup="' + arg + '"] .popup-main-header').outerHeight();
+                    var $footerH = $('[popup="' + arg + '"] .popup-main-footer').outerHeight();
+                    element.css("height", WindowHeight - 20 + "px");
+                    $('[popup="' + arg + '"] .popup-main-content').css("height", (WindowHeight - 20 - ($headerH + $footerH)) + 'px');
+                    $('[popup="' + arg + '"] .popup-main-content').slimScroll({
+                        height: (WindowHeight - 20 - ($headerH + $footerH)) + 'px',
+                        width: element.outerWidth() + 'px',
+                        size: '3px',
+                        color: '#8b969c',
+                        distance: '2px'
+                    });
+                }
+            }
+            window.setTimeout(function() {
+                $(".loading-vcard").fadeOut();
+                $(".vcard-functions-wrapper a:visible:last").addClass("last-element");
+
+
+            }, 500);
+        });
+
+        if (parent && typeof parent.ImHere === "function") {
+            parent.ImHere();
+        } else {
+            //Only load this on standalone pages not inframe working
+            SocialShareKit.init();
+        }
+
+        /**
+         * Fixes opening external urls
+         */
+        var saveWindowOpenFunction = false;
+        $(document).ready(function() {
+            /*
+             * window.open gets overwritten so we save this before using and reset everytime
+             * */
+            if (!saveWindowOpenFunction)
+                saveWindowOpenFunction = window.open;
+            $('a[rel*=external]').click(function() {
+                //Reset window open because it will be overriden on mobile devices
+                window.open = saveWindowOpenFunction;
+
+                //This has only chrome on iOs
+                //Start the download directly because chrome is preventing window.open
+                if (navigator.userAgent.match('CriOS'))
+                    return true;
+
+                var failed = false;
+                try { //Try to open the url it will fail on inapp browsers
+                    open = window.open($(this).attr('href'), '_system');
+                } catch (e) {
+                    failed = true;
+                }
+
+                if (open == null || failed == true || typeof(open) == 'undefined' || open.location == window.location)
+                    alert("Download is not allowed by this scanner app. Please open this page in your default browser e.g. chrome or safari");
+
+                return false;
+            });
+        });
+
+        /*]]>*/
+
+    </script>
+</body>
+
+
+</html>
