@@ -234,36 +234,7 @@
             $scope.sendByEmail = sendByEmail;
             $scope.getBackgroundColor = getBackgroundColor;
 
-            function triggerPost(action, email, callback) {
-                if (action == "download")
-                    return true;
 
-                $.post("/handlePost/bae6LX", {
-                    action: action,
-                    email: email,
-                    YII_CSRF_TOKEN: YII_CSRF_TOKEN
-                }, function(result) {
-                    callback(result);
-                }, "json");
-
-            }
-            /**
-             * Trigger sending via email
-             */
-            function sendByEmail(email) {
-
-                triggerPost("email", email, function(result) {
-                    if (result.status == "success") {
-                        OpenPopUp('email-success');
-                        window.setTimeout(function() {
-                            ClosePopUp();
-                        }, 5000);
-                    } else {
-
-                    }
-                });
-                return false;
-            }
             /**
              * Trigger download action of the vCard
              */
