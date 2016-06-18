@@ -1,0 +1,110 @@
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+.container {
+    background: #fff;
+    height: 98%;
+    width: 480px;
+    margin: auto;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    -webkit-box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.25);
+}
+
+.header {
+    text-align: center;
+    padding-bottom: 8px;
+    background-color: #55CFD4;
+    color: #fff;
+}
+
+.header> h2 {
+    margin-top: 0px;
+    padding-top: 15px;
+    padding-bottom: 0px;
+    margin-bottom: 0;
+    font-size: 50px;
+    font-family: 'Tangerine', cursive;
+}
+
+.header> p {
+    padding-top: 5px;
+    padding-bottom: 15px;
+    margin-top: 0;
+}
+
+.menu {
+    text-align: center !important;
+    width: 100% !important;
+    height: 40px !important;
+    border-top: solid #fff 1px;
+}
+
+.callContainer {
+    display: inline-block;
+    text-align: center !important;
+    height: 100% !important;
+    width: 50% !important;
+    background-color: #55CFD4;
+    float: left;
+}
+
+.callItem {
+    margin-top: 4px;
+    display: inline-block;
+    height: 100% !important;
+    width: 49% !important;
+    text-decoration: none !important;
+    line-height: 40px;
+    color: #fff;
+}
+
+.emailContainer {
+    display: inline-block;
+    text-align: center !important;
+    height: 100% !important;
+    width: 49% !important;
+    background-color: #55CFD4;
+    display: inline-block !important;
+    border-left: solid #fff 1px;
+}
+
+.emailItem {
+    margin-top: 4px;
+    display: inline-block;
+    height: 100% !important;
+    width: 50% !important;
+    text-decoration: none !important;
+    line-height: 40px;
+    color: #fff;
+}
+
+.emailItem:hover,
+.callItem:hover {
+    -webkit-box-shadow: 0px 6px 6px 6px rgba(0, 0, 0, 0.25);
+    -moz-box-shadow: 0px 2px 6px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 2px 0px rgba(0, 0, 0, 0.25);
+}
+
+@media (max-width: 649px) {
+    .container {
+        width: 100% !important;
+        height: 100% !important;
+    }
+    .emailItem {
+        width: 80% !important;
+        float: left;
+        margin-left: 10px;
+    }
+    .callItem {
+        width: 80% !important;
+        float: right;
+        margin-right: 10px;
+    }
+}
