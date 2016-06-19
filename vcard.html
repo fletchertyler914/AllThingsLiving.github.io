@@ -14,6 +14,18 @@
 </head>
 
 <body ng-app="app">
+    <div id="fb-root"></div>
+    <script>
+        (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s);
+            js.id = id;
+            js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.6";
+            fjs.parentNode.insertBefore(js, fjs);
+        }(document, 'script', 'facebook-jssdk'));
+    </script>
+
     <!--Preloading animation:start-->
     <div class="loading-vcard active">
         <div class="sk-three-bounce">
@@ -126,16 +138,15 @@
                 <a close-popup="save" ng-click="ClosePopUp('share');"><i class="icon icon-close"></i></a>
 
                 <h3>Share</h3>
-                <p ng-show="loadDemo">Users can share your page</p>
                 <div class="ssk-block ssk-md">
                     <a href="" class="ssk ssk-text ssk-facebook">Facebook</a>
                     <a href="" class="ssk ssk-text ssk-twitter">Twitter</a>
                     <a href="" class="ssk ssk-text ssk-google-plus">Google+</a>
                     <a href="" class="ssk ssk-text ssk-linkedin">LinkedIn</a>
-                    <a href="" class="ssk ssk-text ssk-email" target="_blank">E-Mail</a>
                 </div><br><br>
+                <div class="fb-like" data-href="https://www.facebook.com/AllThingsLivingTampa/" data-width="50" data-layout="button_count" data-action="like" data-show-faces="true" data-share="true"></div>
                 <div ng-show="!loadDemo">Link to this page<br><br>
-                    <input type="text" class="autoselect" value="http://allthingsliving.net/vCard/index.html" readonly/>
+                    <input type="text" class="autoselect" value="http://allthingsliving.net/vcard.html" readonly/>
                 </div>
 
                 <a style="cursor: pointer;color: #5ab7e5;font-weight: 400;" ng-show="loadDemo" ng-click="ClosePopUp('share');">
@@ -348,7 +359,6 @@
         });
 
         /*]]>*/
-
     </script>
 </body>
 
