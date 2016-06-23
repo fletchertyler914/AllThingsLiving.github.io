@@ -228,14 +228,14 @@
         <section class="calculator">
             <div class="col-lg-8 col-lg-offset-2 text-center">
 
-                <h2>Price Estimator</h2>
+                <h2>Price Calculator</h2>
                 <hr style="border-color: #fff;">
 
                 <form id="priceForm" onsubmit="return false">
                     <div class="formItem">
                         <div class="formLabel">Number of Pets:</div>
                         <div class="formInputContainer">
-                            <select class="select select-style" id="petValue">
+                            <select class="select-style" id="petValue">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -248,7 +248,7 @@
                     <div class="formItem">
                         <div class="formLabel">Number of Visits:</div>
                         <div class="formInputContainer">
-                            <select class="select select-style" id="visitValue">
+                            <select class="select-style" id="visitValue">
                                 <option value="1">1</option>
                                 <option value="2">2</option>
                                 <option value="3">3</option>
@@ -276,7 +276,7 @@
                     <div class="formItem">
                         <div class="formLabel">Type of Visit:</div>
                         <div class="formInputContainer">
-                            <select class="select select-style" id="visitTypeValue">
+                            <select class="select-style" id="visitTypeValue">
                                 <option value="1">Regular</option>
                                 <option value="2">Quick</option>
                                 <option value="3">Extended</option>
@@ -295,7 +295,7 @@
             <!-- Modal content -->
             <div class="modal-content">
                 <span class="close">x</span>
-                <h3>Esitmated Price:</h3><br>
+                <h3 id="priceHeader">Esitmated Price:</h3><br>
                 <p id="priceInput"></p>
             </div>
 

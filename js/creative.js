@@ -1,3 +1,6 @@
+(function ($) {
+    "use strict"; // Start of use strict
+
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -7,12 +10,13 @@ var btn = document.getElementById("myBtn");
 // Get the <span> element that closes the modal
 var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal 
+// When the user clicks on the button, open the modal
 btn.onclick = function () {
     modal.style.display = "block";
     var price = checkPrices();
 
     if (isNaN(price)) {
+        $('#priceHeader').hide();
         document.getElementById("priceInput").innerHTML = price.toString();
     } else {
         document.getElementById("priceInput").innerHTML = "$" + price.toString();
@@ -52,9 +56,9 @@ function checkPrices() {
     }
 
     if (petNum == 5) {
-        return "Thats A Lot Of Pets! Please Contact Us!";
+        return "Wow thats A Lot Of Pets!<br>Please Contact Us For Pricing!";
     } else if (visitNum == 20) {
-        return "Thats A Lot Of Visits! Please Contact Us!";
+        return "Wow thats A Lot Of Visits!<br>Please Contact Us To Help You Schedule!";
     } else {
         if (petNum > 1) {
             if (visitNum > 10 && visitNum < 20) {
@@ -87,8 +91,7 @@ function checkPrices() {
 };
 
 
-(function ($) {
-    "use strict"; // Start of use strict
+
 
     $(window).load(function () {
         setTimeout(function () {
