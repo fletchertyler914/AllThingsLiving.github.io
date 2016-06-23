@@ -40,7 +40,6 @@
         ga('create', 'UA-73266616-2', 'auto');
         ga('require', 'linkid');
         ga('send', 'pageview');
-
     </script>
     <!-- Google Analytics -->
 
@@ -50,7 +49,6 @@
             google_ad_client: "ca-pub-7749045388717223",
             enable_page_level_ads: true
         });
-
     </script>
 
 </head>
@@ -58,13 +56,13 @@
 <body id="page-top">
     <script type="application/ld+json">
         {
-          "@context" : "http://schema.org",
-          "@type" : "Organization",
-          "name" : "All Things Living",
-          "url" : "http://allthingsliving.net",
-          "sameAs" : [
-            "https://www.facebook.com/AllThingsLivingTampa"
-         ]
+            "@context": "http://schema.org",
+            "@type": "Organization",
+            "name": "All Things Living",
+            "url": "http://allthingsliving.net",
+            "sameAs": [
+                "https://www.facebook.com/AllThingsLivingTampa"
+            ]
         }
     </script>
 
@@ -227,16 +225,81 @@
             </div>
         </section>
 
-        <aside class="bg-primary">
-            <div class="container text-center">
-                <div class="call-to-action">
-                    <!--
-                    <h2>Stuff Here</h2>
-                    <a href="" class="btn btn-default btn-xl sr-button">Button</a>
--->
-                </div>
+        <section class="calculator">
+            <div class="col-lg-8 col-lg-offset-2 text-center">
+
+                <h2>Price Estimator</h2>
+                <hr style="border-color: #fff;">
+
+                <form id="priceForm" onsubmit="return false">
+                    <div class="formItem">
+                        <div class="formLabel">Number of Pets:</div>
+                        <div class="formInputContainer">
+                            <select class="select select-style" id="petValue">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5+</option>
+                            </select>
+                        </div> <br>
+                    </div>
+                    <br>
+                    <div class="formItem">
+                        <div class="formLabel">Number of Visits:</div>
+                        <div class="formInputContainer">
+                            <select class="select select-style" id="visitValue">
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                                <option value="6">6</option>
+                                <option value="7">7</option>
+                                <option value="8">8</option>
+                                <option value="9">9</option>
+                                <option value="10">10</option>
+                                <option value="11">11</option>
+                                <option value="12">12</option>
+                                <option value="13">13</option>
+                                <option value="14">14</option>
+                                <option value="15">15</option>
+                                <option value="16">16</option>
+                                <option value="17">17</option>
+                                <option value="18">18</option>
+                                <option value="19">19</option>
+                                <option value="20">20+</option>
+                            </select>
+                        </div> <br>
+                    </div>
+                    <br>
+                    <div class="formItem">
+                        <div class="formLabel">Type of Visit:</div>
+                        <div class="formInputContainer">
+                            <select class="select select-style" id="visitTypeValue">
+                                <option value="1">Regular</option>
+                                <option value="2">Quick</option>
+                                <option value="3">Extended</option>
+                            </select>
+                        </div> <br>
+                    </div>
+                    <br><br>
+                    <input class="btn btn-default btn-xl sr-button" id="myBtn" type="submit" onclick="checkPrices()" value="Check Price">
+                </form>
             </div>
-        </aside>
+        </section>
+
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">x</span>
+                <h3>Esitmated Price:</h3><br>
+                <p id="priceInput"></p>
+            </div>
+
+        </div>
 
         <section id="contact">
             <div class="container">
@@ -264,11 +327,7 @@
         <div class="ad">
             <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
             <!-- Ad -->
-            <ins class="adsbygoogle"
-                 style="display:block"
-                 data-ad-client="ca-pub-7749045388717223"
-                 data-ad-slot="8807953191"
-                 data-ad-format="link"></ins>
+            <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-7749045388717223" data-ad-slot="8807953191" data-ad-format="link"></ins>
             <script>
                 (adsbygoogle = window.adsbygoogle || []).push({});
             </script>

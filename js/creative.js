@@ -1,20 +1,104 @@
-/*!
- * Creative v1.0.4 (http://startbootstrap.com/template-overviews/creative)
- * Copyright 2013-2016 Start Bootstrap
- * Licensed under MIT (https://github.com/BlackrockDigital/startbootstrap/blob/gh-pages/LICENSE)
- */
+// Get the modal
+var modal = document.getElementById('myModal');
 
-(function($) {
+// Get the button that opens the modal
+var btn = document.getElementById("myBtn");
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on the button, open the modal 
+btn.onclick = function () {
+    modal.style.display = "block";
+    var price = checkPrices();
+
+    if (isNaN(price)) {
+        document.getElementById("priceInput").innerHTML = price.toString();
+    } else {
+        document.getElementById("priceInput").innerHTML = "$" + price.toString();
+    }
+}
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function () {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function (event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
+
+
+
+
+function checkPrices() {
+    var petNum = document.getElementById("petValue").value;
+    var visitNum = document.getElementById("visitValue").value;
+    var visitTypeNum = document.getElementById("visitTypeValue").value;
+    var totalPrice = 0;
+    var basePrice = 0;
+    var additionalPetPrice = 0;
+    var discount = 0;
+
+    if (visitTypeNum == 1) {
+        basePrice = 20;
+    } else if (visitTypeNum == 2) {
+        basePrice = 14;
+    } else {
+        basePrice = 30;
+    }
+
+    if (petNum == 5) {
+        return "Thats A Lot Of Pets! Please Contact Us!";
+    } else if (visitNum == 20) {
+        return "Thats A Lot Of Visits! Please Contact Us!";
+    } else {
+        if (petNum > 1) {
+            if (visitNum > 10 && visitNum < 20) {
+                // 10% OFf
+                discount = (basePrice * visitNum) * 0.10;
+                additionalPetPrice = (petNum - 1) * 10;
+                totalPrice = ((basePrice + additionalPetPrice) * visitNum) - discount;
+                return totalPrice;
+
+            } else {
+                additionalPetPrice = (petNum - 1) * 10;
+                totalPrice = ((basePrice + additionalPetPrice) * visitNum);
+                return totalPrice;
+            }
+        } else {
+            if (visitNum >= 10 && visitNum < 20) {
+                // 10% OFf
+                discount = (basePrice * visitNum) * 0.10;
+                totalPrice = (basePrice * visitNum) - discount;
+                return totalPrice;
+
+            } else {
+                totalPrice = basePrice * visitNum;
+                return totalPrice;
+            }
+        }
+    }
+
+    return false;
+};
+
+
+(function ($) {
     "use strict"; // Start of use strict
 
-    $(window).load(function() {
-           setTimeout(function() {
+    $(window).load(function () {
+        setTimeout(function () {
             $(".se-pre-con").fadeOut(1500);
-        }, 3000);
+        }, 0);
     });
 
+
     // jQuery for page scrolling feature - requires jQuery Easing plugin
-    $('a.page-scroll').bind('click', function(event) {
+    $('a.page-scroll').bind('click', function (event) {
         var $anchor = $(this);
         $('html, body').stop().animate({
             scrollTop: ($($anchor.attr('href')).offset().top - 50)
@@ -29,7 +113,7 @@
     })
 
     // Closes the Responsive Menu on Menu Item Click
-    $('.navbar-collapse ul li a:not(.dropdown-toggle)').click(function() {
+    $('.navbar-collapse ul li a:not(.dropdown-toggle)').click(function () {
         $('.navbar-toggle:visible').click();
     });
 
