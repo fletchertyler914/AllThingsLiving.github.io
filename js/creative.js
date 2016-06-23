@@ -93,9 +93,8 @@ function checkPrices() {
     $(window).load(function () {
         setTimeout(function () {
             $(".se-pre-con").fadeOut(1500);
-        }, 0);
+        }, 2500);
     });
-
 
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function (event) {
