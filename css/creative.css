@@ -200,6 +200,9 @@ input {
     .modal-content {
         width: 80%;
     }
+    .calculator {
+        height: 330px;
+    }
 }
 
 @media (max-width: 525px) {
