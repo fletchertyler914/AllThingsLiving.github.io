@@ -1,7 +1,6 @@
 (function ($) {
     "use strict"; // Start of use strict
 
-
 // Get the modal
 var modal = document.getElementById('myModal');
 
@@ -14,6 +13,8 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
     modal.style.display = "block";
+    $(document.body).css('overflow', 'hidden');
+
     var price = checkPrices();
     var petNum = document.getElementById("petValue").value;
     var visitNum = document.getElementById("visitValue").value;
@@ -43,6 +44,7 @@ btn.onclick = function () {
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
     modal.style.display = "none";
+    $(document.body).css('overflow', 'auto');
 }
 
 // When the user clicks anywhere outside of the modal, close it
