@@ -9,6 +9,8 @@
     /* Sit on top */
     left: 0;
     top: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     /* Full width */
     height: 100%;
@@ -197,7 +199,8 @@ input {
 
 @media (max-width: 765px) {
     .modal-content {
-        width: 80%;
+        margin: 50% auto;
+        width: 75%;
     }
     .calculator {
         height: 330px;
