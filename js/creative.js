@@ -1,113 +1,113 @@
 (function ($) {
     "use strict"; // Start of use strict
 
-// Get the modal
-var modal = document.getElementById('myModal');
+    // Get the modal
+    var modal = document.getElementById('myModal');
 
-// Get the button that opens the modal
-var btn = document.getElementById("myBtn");
+    // Get the button that opens the modal
+    var btn = document.getElementById("myBtn");
 
-// Get the <span> element that closes the modal
-var span = document.getElementsByClassName("close")[0];
+    // Get the <span> element that closes the modal
+    var span = document.getElementsByClassName("close")[0];
 
-// When the user clicks on the button, open the modal
-btn.onclick = function () {
-    modal.style.display = "block";
-    $(document.body).css('overflow', 'hidden');
+    // When the user clicks on the button, open the modal
+    btn.onclick = function () {
+        modal.style.display = "block";
+        $(document.body).css('overflow', 'hidden');
 
-    var price = checkPrices();
-    var petNum = document.getElementById("petValue").value;
-    var visitNum = document.getElementById("visitValue").value;
-    var visitTypeNum = document.getElementById("visitTypeValue").value;
-    var visitType;
+        var price = checkPrices();
+        var petNum = document.getElementById("petValue").value;
+        var visitNum = document.getElementById("visitValue").value;
+        var visitTypeNum = document.getElementById("visitTypeValue").value;
+        var visitType;
 
-    if (visitTypeNum == 1) {
-        visitType = "Regular";
-    } else if (visitTypeNum == 2) {
-        visitType = "Quick";
-    } else {
-        visitType = "Extended";
-    }
-
-    if (isNaN(price)) {
-        $('#priceHeader').hide();
-        document.getElementById("priceInput").innerHTML = price.toString();
-    } else {
-        $('#priceHeader').show();
-        document.getElementById("priceInput").innerHTML = "$" + price.toString();
-        document.getElementById("numOfPets").innerHTML = petNum;
-        document.getElementById("numOfVisits").innerHTML = visitNum;
-        document.getElementById("typeOfVisit").innerHTML = visitType;
-    }
-}
-
-// When the user clicks on <span> (x), close the modal
-span.onclick = function () {
-    modal.style.display = "none";
-    $(document.body).css('overflow', 'auto');
-}
-
-// When the user clicks anywhere outside of the modal, close it
-window.onclick = function (event) {
-    if (event.target == modal) {
-        modal.style.display = "none";
-    }
-}
-
-
-
-
-function checkPrices() {
-    var petNum = document.getElementById("petValue").value;
-    var visitNum = document.getElementById("visitValue").value;
-    var visitTypeNum = document.getElementById("visitTypeValue").value;
-    var totalPrice = 0;
-    var basePrice = 0;
-    var additionalPetPrice = 0;
-    var discount = 0;
-
-    if (visitTypeNum == 1) {
-        basePrice = 20;
-    } else if (visitTypeNum == 2) {
-        basePrice = 14;
-    } else {
-        basePrice = 30;
-    }
-
-    if (petNum == 5) {
-        return "Wow thats A Lot Of Pets!<br>Please Contact Us For Pricing!";
-    } else if (visitNum == 20) {
-        return "Wow thats A Lot Of Visits!<br>Please Contact Us To Help You Schedule!";
-    } else {
-        if (petNum > 1) {
-            if (visitNum > 10 && visitNum < 20) {
-                // 10% OFf
-                discount = (basePrice * visitNum) * 0.10;
-                additionalPetPrice = (petNum - 1) * 10;
-                totalPrice = ((basePrice + additionalPetPrice) * visitNum) - discount;
-                return totalPrice;
-
-            } else {
-                additionalPetPrice = (petNum - 1) * 10;
-                totalPrice = ((basePrice + additionalPetPrice) * visitNum);
-                return totalPrice;
-            }
+        if (visitTypeNum == 1) {
+            visitType = "Regular";
+        } else if (visitTypeNum == 2) {
+            visitType = "Quick";
         } else {
-            if (visitNum >= 10 && visitNum < 20) {
-                // 10% OFf
-                discount = (basePrice * visitNum) * 0.10;
-                totalPrice = (basePrice * visitNum) - discount;
-                return totalPrice;
+            visitType = "Extended";
+        }
 
-            } else {
-                totalPrice = basePrice * visitNum;
-                return totalPrice;
-            }
+        if (isNaN(price)) {
+            $('#priceHeader').hide();
+            document.getElementById("priceInput").innerHTML = price.toString();
+        } else {
+            $('#priceHeader').show();
+            document.getElementById("priceInput").innerHTML = "$" + price.toString();
+            document.getElementById("numOfPets").innerHTML = petNum;
+            document.getElementById("numOfVisits").innerHTML = visitNum;
+            document.getElementById("typeOfVisit").innerHTML = visitType;
         }
     }
 
-    return false;
-};
+    // When the user clicks on <span> (x), close the modal
+    span.onclick = function () {
+        modal.style.display = "none";
+        $(document.body).css('overflow', 'auto');
+    }
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.onclick = function (event) {
+        if (event.target == modal) {
+            modal.style.display = "none";
+        }
+    }
+
+
+
+
+    function checkPrices() {
+        var petNum = document.getElementById("petValue").value;
+        var visitNum = document.getElementById("visitValue").value;
+        var visitTypeNum = document.getElementById("visitTypeValue").value;
+        var totalPrice = 0;
+        var basePrice = 0;
+        var additionalPetPrice = 0;
+        var discount = 0;
+
+        if (visitTypeNum == 1) {
+            basePrice = 20;
+        } else if (visitTypeNum == 2) {
+            basePrice = 14;
+        } else {
+            basePrice = 30;
+        }
+
+        if (petNum == 5) {
+            return "Wow thats A Lot Of Pets!<br>Please Contact Us For Pricing!";
+        } else if (visitNum == 20) {
+            return "Wow thats A Lot Of Visits!<br>Please Contact Us To Help You Schedule!";
+        } else {
+            if (petNum > 1) {
+                if (visitNum > 10 && visitNum < 20) {
+                    // 10% OFf
+                    discount = (basePrice * visitNum) * 0.10;
+                    additionalPetPrice = (petNum - 1) * 10;
+                    totalPrice = ((basePrice + additionalPetPrice) * visitNum) - discount;
+                    return totalPrice;
+
+                } else {
+                    additionalPetPrice = (petNum - 1) * 10;
+                    totalPrice = ((basePrice + additionalPetPrice) * visitNum);
+                    return totalPrice;
+                }
+            } else {
+                if (visitNum >= 10 && visitNum < 20) {
+                    // 10% OFf
+                    discount = (basePrice * visitNum) * 0.10;
+                    totalPrice = (basePrice * visitNum) - discount;
+                    return totalPrice;
+
+                } else {
+                    totalPrice = basePrice * visitNum;
+                    return totalPrice;
+                }
+            }
+        }
+
+        return false;
+    };
 
 
 
@@ -117,6 +117,18 @@ function checkPrices() {
             $(".se-pre-con").fadeOut(1500);
         }, 2500);
     });
+
+
+    $("#slideshow > div:gt(0)").hide();
+
+    setInterval(function () {
+        $('#slideshow > div:first')
+            .fadeOut(1000)
+            .next()
+            .fadeIn(1000)
+            .end()
+            .appendTo('#slideshow');
+    }, 3000);
 
     // jQuery for page scrolling feature - requires jQuery Easing plugin
     $('a.page-scroll').bind('click', function (event) {

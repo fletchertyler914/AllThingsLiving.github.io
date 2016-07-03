@@ -55,7 +55,82 @@
 }
 
 
+/* Image Slideshow */
+
+#portfolio {
+    padding-bottom: 10px;
+    width: 100%;
+    height: auto;
+}
+
+.imageContainer {
+    text-align: center !important;
+    height: auto !important;
+    width: 100% !important;
+    margin: 0;
+}
+
+#slideshow {
+    /*    position: relative;*/
+    width: 100%;
+    height: 400px;
+    text-align: center !important;
+}
+
+#slideshow> div {
+    position: absolute;
+    width: 450px !important;
+    height: 100%;
+    margin: auto;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+
+.imageHolder {
+    width: 400px !important;
+    height: 400px !important;
+    padding-top: 15px;
+    box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.9);
+    background-color: #fff;
+}
+
+.imageHolder> p {
+    padding-top: 15px !important;
+    font-family: 'Marck Script', cursive;
+    font-size: 25px;
+}
+
+.images {
+    width: 420px !important;
+    height: 325px !important;
+    overflow: hidden;
+    padding: 0px !important;
+}
+
+@media (max-width: 450px) {
+    .images,
+    .imageHolder,
+    #slideshow> div {
+        width: 100% !important;
+    }
+}
+
+#services {
+    padding-bottom: 20px !important;
+}
+
+
 /* Custom CSS */
+
+.number {
+    text-indent: 35px;
+}
+
+.visit {
+    text-indent: 12px;
+}
 
 #page {
     height: 100% !important;
@@ -135,7 +210,6 @@
     height: 325px;
     padding: 10px;
 }
-
 
 .select-style {
     -webkit-appearance: none;
@@ -223,11 +297,17 @@ input {
     #page> header> div {
         background-color: rgba(0, 0, 0, 0.25) !important;
     }
+    .images {
+        width: 80%;
+    }
 }
 
 @media (max-width: 1200px) {
     #smallScreen {
         display: block;
+    }
+    .images {
+        width: 70%;
     }
 }
 
